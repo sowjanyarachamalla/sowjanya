@@ -6,10 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Tc01Registration {
+public class Tc01Registrationpom {
 	private WebDriver driver;
 
-	public Tc01Registration(WebDriver driver) {
+	public Tc01Registrationpom(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -32,8 +32,7 @@ public class Tc01Registration {
 	@FindBy(xpath = "//*[@id=\"signupform\"]/p[5]/input")
 	private WebElement RegisterBtn;
 
-	@FindBy(xpath = "/html")
-	private WebElement executeScript;
+
 
 	private Object js;
 

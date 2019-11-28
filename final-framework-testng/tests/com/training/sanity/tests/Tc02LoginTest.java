@@ -10,19 +10,20 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.training.generics.GenericMethods;
 import com.training.generics.ScreenShot;
-import com.training.pom.Tc03RecoverPwd;
+import com.training.pom.Tc02Loginpom;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
-public class Tc03RecoverPassword {
-	
-	
+public class Tc02LoginTest {
+
 	private WebDriver driver;
 	private String baseUrl;
-	private Tc03RecoverPwd Tc03RecoverPwd;
+	private Tc02Loginpom Tc02Login;
 	private static Properties properties;
 	private ScreenShot screenShot;
+	private GenericMethods generic;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws IOException {
@@ -34,7 +35,7 @@ public class Tc03RecoverPassword {
 	@BeforeMethod
 	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		Tc03RecoverPwd = new Tc03RecoverPwd(driver);
+		Tc02Login = new Tc02Loginpom(driver);
 		baseUrl = properties.getProperty("baseURL");
 		screenShot = new ScreenShot(driver);
 		// open the browser
@@ -48,17 +49,16 @@ public class Tc03RecoverPassword {
 	}
 
 	@Test
-	public void RecoverPwdTest() throws InterruptedException {
-		Tc03RecoverPwd.clickLoginRegisterBtn();
-		Tc03RecoverPwd.ExecutorScroll();
+	public void RegistrationTest() throws InterruptedException {
+		Tc02Login.clickLoginRegisterBtn();
+		generic.assertText("Log In", "//*[@id=\"post-133\"]/div/div/div/ul/li[1]/a", "xpath","Login Link is not found");
 		screenShot.captureScreenShot("LoginRegister");
-        Tc03RecoverPwd.LostPasswordBtn();
-		screenShot.captureScreenShot("LostPasswordPage");
-        Tc03RecoverPwd.sendEmail("revasharma@gmail.com");
-		screenShot.captureScreenShot("EmailCredentials");
-		Tc03RecoverPwd.ResetPasswordBtn();
-        screenShot.captureScreenShot("PostResetButtonClick");
-		
+		Tc02Login.sendUname("admin");
+		Tc02Login.sendPassword("admin@123");
+		//Tc02Login.ExecutorScroll();
+		screenShot.captureScreenShot("LoginCredentials");
+		Tc02Login.SinginBtn();
+		screenShot.captureScreenShot("LogininSuccessful");
 	}
 
 }

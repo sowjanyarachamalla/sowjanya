@@ -6,11 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class Tc02Login {
+public class Tc02Loginpom {
 	
 private WebDriver driver; 
 	
-	public Tc02Login(WebDriver driver) {
+	public Tc02Loginpom(WebDriver driver) {
 		this.driver = driver; 
 		PageFactory.initElements(driver, this);
 	}
